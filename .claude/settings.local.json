@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell.exe -Command \"dotnet build 'c:/Users/BillMorgan/OneDrive - CyberFOX/Documents/Malware Sim/ThreatDemo-AutoElevate/ThreatDemo.sln'\")",
+      "Bash(powershell.exe -Command \"Test-Path 'C:\\\\Program Files\\\\dotnet\\\\dotnet.exe'; Test-Path 'C:\\\\Program Files \\(x86\\)\\\\dotnet\\\\dotnet.exe'; ls 'C:\\\\Program Files\\\\dotnet\\\\' -ErrorAction SilentlyContinue | Select-Object -First 5\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Windows\\\\Microsoft.NET\\\\Framework64' -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -Last 5 Name\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"c:/Users/BillMorgan/OneDrive - CyberFOX/Documents/Malware Sim/ThreatDemo-AutoElevate/build.ps1\")",
+      "Bash(powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName\\('System.Windows.Forms'\\).Location; [System.Reflection.Assembly]::LoadWithPartialName\\('System.Drawing'\\).Location\")",
+      "Bash(powershell.exe -Command \"Test-Path 'C:\\\\Program Files \\(x86\\)\\\\Reference Assemblies\\\\Microsoft\\\\Framework\\\\.NETFramework\\\\v4.8\\\\System.Windows.Forms.dll'\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Program Files \\(x86\\)\\\\Reference Assemblies\\\\Microsoft\\\\Framework\\\\.NETFramework' -ErrorAction SilentlyContinue | Select Name\")",
+      "Bash(\"/c/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe\" YourRMM.csproj /nologo /v:minimal)",
+      "Bash(\"/c/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe\" ThreatDemo.csproj /nologo /v:minimal)"
+    ]
+  }
+}

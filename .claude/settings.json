@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(MSYS_NO_PATHCONV=1 \"/c/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe\" \"c:/Users/BillMorgan/OneDrive - CyberFOX/Documents/Malware Sim/ThreatDemo-AutoElevate/YourRMM.csproj\" /nologo /v:minimal)",
+      "Bash(MSYS_NO_PATHCONV=1 \"/c/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe\" \"c:/Users/BillMorgan/OneDrive - CyberFOX/Documents/Malware Sim/ThreatDemo-AutoElevate/ThreatDemo.csproj\" /nologo /v:minimal)"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build YourRMM",
+            "type": "process",
+            "command": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\MSBuild.exe",
+            "args": [ "${workspaceFolder}\\YourRMM.csproj", "/nologo", "/v:minimal" ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "build ThreatDemo",
+            "type": "process",
+            "command": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\MSBuild.exe",
+            "args": [ "${workspaceFolder}\\ThreatDemo.csproj", "/nologo", "/v:minimal" ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "build",
+            "dependsOn": [ "build YourRMM", "build ThreatDemo" ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run ThreatDemo",
+            "type": "process",
+            "command": "${workspaceFolder}\\bin\\ThreatDemo.exe",
+            "args": [],
+            "dependsOn": "build ThreatDemo",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "never"
+            }
+        },
+        {
+            "label": "run YourRMM",
+            "type": "process",
+            "command": "${workspaceFolder}\\bin\\YourRMM.exe",
+            "args": [],
+            "dependsOn": "build YourRMM",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "never"
+            }
+        }
+    ]
+}
