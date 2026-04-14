@@ -14,14 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
-
-      - name: Build YourRMM
-        run: msbuild YourRMM.csproj /nologo /v:minimal
-
-      - name: Build ThreatDemo
-        run: msbuild ThreatDemo.csproj /nologo /v:minimal
+      - name: Build
+        shell: pwsh
+        run: ./build.ps1
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
