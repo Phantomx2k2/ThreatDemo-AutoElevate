@@ -710,7 +710,7 @@ class ThreatDemo : Form
                     "91% of cyberattacks begin with a phishing email.\n" +
                     "One click is all it takes."
                 );
-                _actionBtn.Text      = "Simulate Phishing Click";
+                _actionBtn.Text      = "Click Me Please!";
                 _actionBtn.BackColor = Pal.DangerDark;
                 break;
 
@@ -935,22 +935,22 @@ class ThreatDemo : Form
 
             // countdown in footer note
 	    _footerNote.Text      = "Attack incoming in 3...";
-	    _footerNote.ForeColor = Pal.Warning;
+	    _footerNote.ForeColor = Color.White;
             Application.DoEvents();
             System.Threading.Thread.Sleep(1000);
             
             _footerNote.Text      = "Attack incoming in 2...";
-            _footerNote.ForeColor = Pal.Warning;
+            _footerNote.ForeColor = Color.White;
             Application.DoEvents();
             System.Threading.Thread.Sleep(1000);
 
             _footerNote.Text = "Attack incoming in 1...";
-            _footerNote.ForeColor = Pal.Warning;
+            _footerNote.ForeColor = Color.White;
             Application.DoEvents();
             System.Threading.Thread.Sleep(1000);
 
             _footerNote.Text = "Triggering...";
-            _footerNote.ForeColor = Pal.Warning;
+            _footerNote.ForeColor = Color.White;
             Application.DoEvents();
 
             // fire the action for this stage
@@ -1024,7 +1024,7 @@ class ThreatDemo : Form
             // GREEN - good to go
             SetHeader(Pal.Success, "PRE-FLIGHT CHECK  -  PASSED", "AutoElevate is Active and Blocking", false);
             _liveIndicator.BackColor = Pal.SuccessDark;
-            _liveLabel.ForeColor     = Pal.Success;
+            _liveLabel.ForeColor     = Color.White;
             _liveLabel.Text          = "LIVE MODE  ON";
             _footerNote.Text         = "AutoElevate is LIVE - click Start Demo to begin.";
             _footerNote.ForeColor    = Pal.Success;
