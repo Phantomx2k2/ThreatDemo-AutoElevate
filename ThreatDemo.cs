@@ -696,20 +696,21 @@ class ThreatDemo : Form
                 SetHeader(Pal.Danger, "STAGE 1 OF 6  |  INITIAL INFECTION", "The Phishing Email - It Only Takes One Click", false);
                 SetContent(
                     "THE ATTACKER'S MOVE",
-                    "A carefully crafted phishing email lands in your end user's inbox.\n" +
-                    "It looks legitimate - a shipping notification, an invoice, an HR update.\n" +
-                    "Against everything IT has told them, the user clicks the link.",
-                    "WHAT HAPPENED",
+                    "A phishing email lands in your end user's inbox.\n" +
+                    "It looks legitimate - a shipping notice, an invoice, an HR update.\n" +
+                    "Against everything IT has told them, the user clicks the link.\n" +
+                    "What happens next occurs entirely in the background.\n" +
+                    "The user sees nothing. The attacker sees everything.",
+                    "WHAT HAPPENS IN THE BACKGROUND",
                     Pal.Danger,
-                    "The browser opens and the user is hijacked to attacker-controlled\n" +
-                    "infrastructure. The attacker now has a live session to work from.\n" +
-                    "The clock is ticking.",
-                    "WHY THIS MATTERS",
+                    "Without AutoElevate blocking, the full attack chain executes automatically in seconds\n\n" +
+                    "Click the button below to see exactly what that looks like.",
+                    "THE SIMULATION",
                     Pal.Warning,
-                    "This is the most common entry point for ransomware.\n" +
-                    "91% of cyberattacks begin with a phishing email.\n" +
-                    "One click is all it takes."
-                );
+                    "the Attacker Console will show you a real-time view\n" +
+                    "of what an AI-assisted attack does the moment that\n" +
+                    "phishing link is clicked. Watch closely."
+);
                 _actionBtn.Text      = "Click Me Please!";
                 _actionBtn.BackColor = Pal.DangerDark;
                 break;
@@ -724,8 +725,8 @@ class ThreatDemo : Form
                     "WHAT HAPPENED",
                     Pal.Success,
                     "AutoElevate blocked mshta.exe the instant it was called.\n" +
-                    "The remote script never executed.\n" +
-                    "The foothold was never established.",
+                    "Remember Phase 2 in the console - Foothold Attempt\n" +
+                    "Foothold Blocked. Door Closed.",
                     "WHY THIS MATTERS",
                     Pal.Warning,
                     "mshta.exe is a favourite LOLBin because it is a signed\n" +
@@ -745,8 +746,8 @@ class ThreatDemo : Form
                     "WHAT HAPPENED",
                     Pal.Success,
                     "AutoElevate blocked bitsadmin.exe before the transfer started.\n" +
-                    "The download queue was never created.\n" +
-                    "Nothing arrived.",
+                    "Phase 3 - Payload Download\n" +
+                    "The tools never landed in C:\\Windows\\Temp.\n",
                     "WHY THIS MATTERS",
                     Pal.Warning,
                     "BITS is the same service Windows uses for Windows Update -\n" +
@@ -765,9 +766,10 @@ class ThreatDemo : Form
                     "disable security tools, and prep the machine for the final payload.",
                     "WHAT HAPPENED",
                     Pal.Success,
-                    "Both wscript.exe and cscript.exe were blocked instantly.\n" +
-                    "The script engines never started.\n" +
-                    "No scripts ran.",
+                    "Both wscript.exe and cscript.exe were blocked.\n" +
+                    "Phase 4 - Network Enumeration\n" +
+                    "Never happened: All Shares are safe.\n"+
+                    "All .js and .vbs script runs disabled.",
                     "WHY THIS MATTERS",
                     Pal.Warning,
                     "Script-based attacks leave almost no forensic trace compared\n" +
@@ -786,14 +788,16 @@ class ThreatDemo : Form
                     "encrypt file shares, and begin lateral movement. This is the kill shot.",
                     "WHAT HAPPENED",
                     Pal.Success,
-                    "AutoElevate blocked PowerShell cold.\n" +
-                    "The attacker's shell never opened.\n" +
-                    "The payload was never downloaded.",
+                    "AutoElevate blocked PowerShell Immediately.\n" +
+                    "Phase 5 - Lateral Movement,\n" +
+                    "Blocked: Credentials were never harvested,\n" +
+                    "Blocked: No domain admin gained.\n"+
+                    "Blocked: Disabling Defender.",
                     "THE PROBLEM THIS CREATES",
                     Pal.Warning,
                     "Your IT team uses PowerShell every day legitimately.\n" +
                     "Blocking it entirely would break real operations.\n" +
-                    "So how do you stop attackers without stopping your own people?"
+                    "Watch the next stage - same binary, different outcome."
                 );
                 _actionBtn.Visible   = false;  // v2: auto-triggered by Next
                 break;
@@ -802,10 +806,11 @@ class ThreatDemo : Form
                 SetHeader(Pal.Info, "STAGE 6 OF 6  |  EXCEPTION RULE", "Same Binary. Different Context. AutoElevate Knows.", false);
                 SetContent(
                     "THE EXCEPTION RULE",
-                    "AutoElevate does not just block or allow by binary name.\n" +
-                    "It checks the parent process. Your approved RMM tool calls the exact\n" +
-                    "same powershell.exe the attacker just tried. AutoElevate sees the\n" +
-                    "trusted parent and lets it through.",
+                    "In the simulation PowerShell was the kill shot.\n" +
+                    "Defender disabled, credentials harvested, DC hit.\n" +
+                    "That was the attacker calling it directly.\n" +
+                    "Your RMM calls the same binary - trusted parent,\n" +
+                    "AutoElevate lets it through.",
                     "WHAT HAPPENED",
                     Pal.Success,
                     "PowerShell was launched by YourRMM.exe - an approved parent.\n" +
@@ -1107,34 +1112,20 @@ class ThreatDemo : Form
     }
 
     void DoPhishing()
-    {
-        try
-        {
-            Process.Start(new ProcessStartInfo {
-                FileName        = "msedge.exe",
-                Arguments       = "--new-window https://geekprank.shi4home.com/fake-virus/index.htm",
-                UseShellExecute = true
-            });
-        }
-        catch
-        {
-            try { Process.Start("https://geekprank.shi4home.com/fake-virus/index.htm"); } catch { }
-        }
+{
+    _stageComplete[1] = true;
+    _stageAllowed[1]  = true;
+    _chain[1].SetAllowed();
+    _actionBtn.Visible    = false;
+    _footerNote.Text      = "Watch the attacker console - close it when ready then click Next.";
+    _footerNote.ForeColor = Pal.TextMid;
 
-        // bring demo window back to front after brief pause
-        System.Threading.Thread.Sleep(800);
+    AttackerConsole console = new AttackerConsole(() => {
         this.Activate();
         this.BringToFront();
-
-        _stageComplete[1] = true;
-        _stageAllowed[1]  = true;
-        _chain[1].SetAllowed();
-
-        // hide action button - rep closes browser manually, then clicks Next
-        _actionBtn.Visible    = false;
-        _footerNote.Text      = "Show the phishing page, close the browser, then click Next.";
-        _footerNote.ForeColor = Pal.TextMid;
-    }
+    });
+    console.Show(this);
+}
 
     void DoMshta()
     {

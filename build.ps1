@@ -11,7 +11,7 @@ function Compile($name) {
     $srcFile = Join-Path $src "$name.cs"
     $outFile = Join-Path $bin "$name.exe"
     Write-Host "  Compiling $name..." -ForegroundColor Cyan
-    & $csc /nologo /target:winexe /out:$outFile /r:System.Windows.Forms.dll /r:System.Drawing.dll $srcFile
+    & $csc /nologo /target:winexe /out:$outFile /r:System.Windows.Forms.dll /r:System.Drawing.dll $srcFile (Join-Path $src 'AttackerConsole.cs')
     if ($LASTEXITCODE -ne 0) { throw "Compile failed: $name" }
     Write-Host "  -> bin\$name.exe" -ForegroundColor Green
 }
