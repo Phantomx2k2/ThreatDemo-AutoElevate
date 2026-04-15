@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Compile Include="ThreatDemo.cs" />
+    <Compile Include="AttackerConsole.cs"/>
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
