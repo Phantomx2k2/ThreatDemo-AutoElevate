@@ -750,8 +750,8 @@ class ThreatDemo : Form
                     "The tools never landed in C:\\Windows\\Temp.\n",
                     "WHY THIS MATTERS",
                     Pal.Warning,
-                    "BITS is the same service Windows uses for Windows Update -\n" +
-                    "so it is almost never blocked by default.\n" +
+                    "BITS is the same service Windows uses for Windows Update\n" +
+                    "So it is almost never blocked by default.\n" +
                     "Attackers rely on this trust. AutoElevate removes it."
                 );
                 _actionBtn.Visible   = false;  // v2: auto-triggered by Next
