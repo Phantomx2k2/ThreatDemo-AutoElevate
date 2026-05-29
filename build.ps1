@@ -18,4 +18,5 @@ function Compile($name) {
 
 Compile 'YourRMM'
 Compile 'ThreatDemo'
+Compile 'DemoConsole'
 Write-Host 'Done.' -ForegroundColor Yellow
