@@ -168,9 +168,9 @@ class DemoConsole : Form
         // ---- UAC TRIGGERS ------------------------------------------------
         y = AddDivider(y);
         y = AddSection(y, "UAC TRIGGERS");
-        y = AddButton(y, "TextEdit Installer",  CF.LightBlue,      CF.White,     "TX", () => LaunchDesktop("TESetup.exe"));
-        y = AddButton(y, "Adobe Reader Install",CF.LightBlue,      CF.White,     "RD", () => LaunchDesktop("reader_en_install.exe"));
-        y = AddButton(y, "Office Setup",        CF.LightBlue,      CF.White,     "XL", () => LaunchDesktop("officesetup.exe"));
+        y = AddButton(y, "TextEdit (Deny)",  CF.LightBlue,      CF.White,     "TX", () => LaunchDesktop("TESetup.exe"));
+        y = AddButton(y, "VLC Player (Approve)",CF.LightBlue,      CF.White,     "RD", () => LaunchDesktop("VLC Install.exe"));
+        y = AddButton(y, "Java Setup (Rule)",        CF.LightBlue,      CF.White,     "XL", () => LaunchDesktop("Java.exe"));
         y = AddButton(y, "PowerShell as Admin", CF.Orange,  CF.LightBlue, "PS", () => LaunchAsAdmin("powershell.exe", ""));
 
         // ---- EXIT --------------------------------------------------------
